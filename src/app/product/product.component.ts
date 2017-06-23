@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output,EventEmitter } from '@angular/core';
 
 import { Product } from '../product';
 
@@ -10,7 +10,7 @@ import { Product } from '../product';
 export class ProductComponent {
 
   @Input() data: Product;
-
+ 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
   | Green Path                                                       |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -21,5 +21,9 @@ export class ProductComponent {
   | de este componente, necesitas, además, un manejador para el      |
   | mismo.                                                           |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+ @Output() onClickBuyButton: EventEmitter<Product> =new EventEmitter<Product>();
 
+ clickBuyButton(product: Product){
+   this.onClickBuyButton.emit(product);
+ }
 }
