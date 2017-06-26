@@ -3,7 +3,7 @@
     <img [src]="product.photo" class="thumbnail" />
   </div>
   <div class="medium-8 columns">
-    <h3>{{ product.name }}</h3>
+    <h3>{{ product.name }}</h3><app-like [liked]="productLiked" (onLikeClicked)="saveLike($event)"> </app-like>
     <p>
       <span class="label" [ngClass]="{
         'info': product.category.id === 1,
@@ -37,7 +37,7 @@
     <button *ngIf="product.state === 'selling'"
             (click)="showPurchaseWarning()"
             class="button large expanded">
-      Comprar por {{ product.price | number:'1.2-2'}}} €
+      Comprar por {{ product.price | number:'1.2-2'}} €
     </button>
     <button (click)="goBack()" class="warning button expanded">Volver</button>
   </div>

@@ -15,6 +15,7 @@ import { ProductService } from '../product.service';
 export class ProductDetailsComponent implements OnDestroy, OnInit {
 
   product: Product;
+  productLiked: boolean;
   private _productSubscription: Subscription;
 
   constructor(
@@ -24,7 +25,14 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
     private _confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
-    this._route.data.forEach((data: { product: Product }) => this.product = data.product);
+    this._route.data.forEach((data: { product: Product }) => {
+      this.product = data.product;
+      if (this.getVariableLocalStorage("like" + this.product.id) === "true"){
+        this.productLiked=true;
+      }else{
+        this.productLiked = false;
+      }
+      });
     window.scrollTo(0, 0);
   }
 
@@ -33,7 +41,9 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
       this._productSubscription.unsubscribe();
     }
   }
-
+  saveLike(like: boolean): void {
+    this.setVariableLocalStorage("like" +  this.product.id, like);
+  }
   private _buyProduct(): void {
     this._productSubscription = this._productService
       .buyProduct(this.product.id)
@@ -58,5 +68,18 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
   goBack(): void {
     window.history.back();
   }
-
+  setVariableLocalStorage(key: string, value: any): void {
+    if (typeof(Storage) !== "undefined") {
+      // Setter
+      localStorage.setItem(key, value);
+    
+    }
+  }
+  getVariableLocalStorage(key: string): string {
+    if (typeof(Storage) !== "undefined") {
+      // Getter
+      return localStorage.getItem(key);
+    }
+  }
 }
+
