@@ -32,7 +32,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   }
 
   filterCollection(filter: ProductFilter): void {
-    console.log(filter);
+
     this._filterStream$.next(filter);
     
   }
@@ -47,7 +47,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
   | como parámetro el identificador del producto.                    |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
   goToDetail($event: Product): void{
-    console.log($event);
+ 
     this._router.navigate(['products',$event.id]);
   }
 }

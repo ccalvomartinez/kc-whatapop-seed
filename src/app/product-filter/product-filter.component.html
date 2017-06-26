@@ -1,10 +1,27 @@
 <div>
   <div class="row">
     <div class="small-6 medium-2 large-3 columns">
-      <input [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted">
+      <label for="fText">Nombre</label>
+      <input id="fText" [(ngModel)]="productFilter.text" type="text" placeholder="Pe. Uncharted">
     </div>
     <div class="small-6 medium-2 large-3 columns">
-      <select [(ngModel)]="productFilter.category">
+       <label for="fState">Estado</label>
+       <select id="fState" [(ngModel)]="productFilter.state">
+         <option value="">-</option>
+        <option value="sold">Vendido</option>
+        <option value="selling">En venta</option>
+      </select>
+    </div>
+    <div class="small-6 medium-2 large-3 columns">
+      <label for="fUser">Usuario</label>
+      <select id="fUsuario" [(ngModel)]="productFilter.user">
+        <option *ngFor="let user of users" [value]="user.id">{{ user.name }}</option>
+      </select>
+    </div>
+
+    <div class="small-6 medium-2 large-3 columns">
+      <label for="fCategory">Categoría</label>
+      <select id="fCategory" [(ngModel)]="productFilter.category">
         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
       </select>
     </div>

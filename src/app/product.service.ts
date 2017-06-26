@@ -58,6 +58,7 @@ export class ProductService {
     |   - Búsqueda por estado:                                         |
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+  
     let filterQueryString: string[] = [];
     if(filter){
       if (filter.category && filter.category !== "0"){
@@ -69,8 +70,11 @@ export class ProductService {
       if (filter.state && filter.state !== ""){
         filterQueryString.push(`state=${filter.state}`);
       }
+       if (filter.user && filter.user !== ""){
+        filterQueryString.push(`seller.id=${filter.user}`);
+      }
     }
-    console.log(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filterQueryString.join('&')}`);
+  
     return this._http
       .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filterQueryString.join('&')}`)
       .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
