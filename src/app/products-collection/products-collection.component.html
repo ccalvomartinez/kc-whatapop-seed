@@ -1,9 +1,7 @@
 <div class="row">
   <div class="small-12 large-12 columns">
     <app-product-filter (onSearch)="filterCollection($event)"></app-product-filter>
-  </div>
-  <div class="small-12 large-12 columns">
-    <app-product-sort></app-product-sort>
+  <app-product-sort (sortPropertyChanged)="sortCollection($event)">  </app-product-sort>
   </div>
   <div *ngIf="products?.length > 0" class="small-up-2 medium-up-4 large-up-6">
 
@@ -15,7 +13,7 @@
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
     <app-product
-      *ngFor="let product of products"
+      *ngFor="let product of products | sortProducts: sortProperty"
       [data]="product"
       class="column"
       (onClickBuyButton)="goToDetail($event)">

@@ -1,11 +1,14 @@
 <div>
   <div class="row">
     <div class="small-3 medium-3 large-3 columns">
-      <label for="fState">Ordenar por</label>
-      <select id="fState" [(ngModel)]="productFilter.state">
-        <option value="">Fecha publicación</option>
-        <option value="sold">Nombre</option>
-        <option value="selling">Precio</option>
+      <label for="fOrder">Ordenar por</label>
+      <select id="fOrder" (change)="sortOrderChange($event)">
+        <option value="publishedDate">Fecha publicación</option>
+        <option value="name">Nombre</option>
+        <option value="seller">Vendedor</option>
+        <option value="category">Categoría</option>
+        <option value="state">Estado</option>
+        <option value="price">Precio</option>
       </select>
     </div>
 

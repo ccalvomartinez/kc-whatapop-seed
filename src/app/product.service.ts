@@ -76,7 +76,7 @@ export class ProductService {
     }
   
     return this._http
-      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filterQueryString.join('&')}`)
+      .get(`${this._backendUri}/products?${filterQueryString.join('&')}`)
       .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
   }
 

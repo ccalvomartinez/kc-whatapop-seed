@@ -15,6 +15,7 @@ import { ProductService } from '../product.service';
 export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
   products: Product[];
+  sortProperty: string;
   private _filterStream$: Subject<ProductFilter> = new Subject;
 
   constructor(private _productService: ProductService,
@@ -25,6 +26,7 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
       .switchMap((filter: ProductFilter) => this._productService.getProducts(filter))
       .subscribe((products: Product[]) => this.products = products);
     this.filterCollection(null);
+    this.sortProperty='publishedDate';
   }
 
   ngOnDestroy(): void {
@@ -35,6 +37,11 @@ export class ProductsCollectionComponent implements OnDestroy, OnInit {
 
     this._filterStream$.next(filter);
     
+  }
+
+  sortCollection(sortProperty: string): void{
+    this.sortProperty=sortProperty;
+   
   }
 
   /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
