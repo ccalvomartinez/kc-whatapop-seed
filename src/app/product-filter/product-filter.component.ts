@@ -32,7 +32,11 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
 
       this._usersSubscription = this._userService
       .getUsers()
-      .subscribe((data: User[]) => this.users = data);
+      .subscribe((data: User[]) => {
+        let userAll:User = new User(0,"-","","",0,0,"");
+        data.splice(0,0,userAll);
+        this.users = data
+      });
 
   }
 

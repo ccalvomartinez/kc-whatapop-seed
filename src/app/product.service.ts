@@ -70,7 +70,7 @@ export class ProductService {
       if (filter.state && filter.state !== ""){
         filterQueryString.push(`state=${filter.state}`);
       }
-       if (filter.user && filter.user !== ""){
+       if (filter.user && filter.user !== "0"){
         filterQueryString.push(`seller.id=${filter.user}`);
       }
     }
