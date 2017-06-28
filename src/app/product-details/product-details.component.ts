@@ -41,6 +41,10 @@ export class ProductDetailsComponent implements OnDestroy, OnInit {
       this._productSubscription.unsubscribe();
     }
   }
+
+  goToSellerProducts(userId: number){
+    this._router.navigate(["products","seller", userId]);
+  }
   saveLike(like: boolean): void {
     this.setVariableLocalStorage("like" +  this.product.id, like);
   }

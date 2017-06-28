@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, Output, SimpleChanges, EventEmitter } from '@angular/core';
 import { Subscription } from 'rxjs/Rx';
 
 import { User } from '../user';
@@ -12,7 +12,7 @@ import { UserService } from '../user.service';
 export class UserProfileComponent implements OnChanges, OnDestroy {
 
   @Input() userId: number;
-
+  @Output() clickOnGoSellerProducts: EventEmitter<number> = new EventEmitter();
   user: User;
   private _userSubscription: Subscription;
 
@@ -36,4 +36,7 @@ export class UserProfileComponent implements OnChanges, OnDestroy {
     return this.user ? this.user.avatar : '';
   }
 
+  buttonGoSellerProductsClicked(): void{
+    this.clickOnGoSellerProducts.emit(this.userId);
+  }
 }

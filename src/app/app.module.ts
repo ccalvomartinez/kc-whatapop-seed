@@ -24,6 +24,9 @@ import { PublicationDatePipe } from './publication-date.pipe';
 import { LikeComponent } from './like/like.component';
 import { ProductSortComponent } from './product-sort/product-sort.component';
 import { SortProductsPipe } from './sort-products.pipe';
+import { ProductsBySellerComponent } from './products-by-seller/products-by-seller.component';
+import { SellerProductsResolveService } from './seller-products-resolve.service';
+import { ProductListComponent } from './product-list/product-list.component';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Blue Path                                                        |
@@ -43,7 +46,9 @@ import { SortProductsPipe } from './sort-products.pipe';
     PublicationDatePipe,
     LikeComponent,
     ProductSortComponent,
-    SortProductsPipe
+    SortProductsPipe,
+    ProductsBySellerComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +65,8 @@ import { SortProductsPipe } from './sort-products.pipe';
     ProductDetailsResolveService,
     ProductService,
     SoldProductsResolveService,
-    UserService
+    UserService,
+    SellerProductsResolveService
   ],
   bootstrap: [AppComponent]
 })

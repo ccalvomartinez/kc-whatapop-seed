@@ -8,5 +8,11 @@
     <p class="text-center">
       <strong>{{ user?.name }}</strong> | {{ user?.nick }}
     </p>
+    
+  </div>
+   <div *ngIf="user" class="row">
+    <div class="small-4 small-offset-4 medium-4 medium-offset-4 large-4 large-offset-4 columns">
+      <button (click)="buttonGoSellerProductsClicked()" class="button text-center">Productos de este vendedor </button>
+    </div>
   </div>
 </div>
